@@ -21,10 +21,18 @@ def get_frequencies(table, header, col_name):
     return unique_col_values, counts
 
 def group_by(table, header, group_by_col_name):
-    # TODO: return the grouped rows in a structure that makes it easy to access each group
+    # returns the grouped rows in a structure that makes it easy to access each group
     #(for example, a dictionary with the attribute values as keys, or a list of tables with corresponding labels).
-    pass
-  
+    
+    col_idx=header.index(col_name)
+    subtables={}
+
+    for row in table:
+        key=row[col_idx]
+        if key not in subtables:
+            subtables[key]=[]
+        subtables[key].append(row)
+    return subtables
         
     
     

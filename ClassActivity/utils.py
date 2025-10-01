@@ -60,3 +60,15 @@ def compute_bin_frequencies(values, cutoffs):
                 if cutoffs[i] <= value < cutoffs[i + 1]:
                     freqs[i] += 1  # add one to this bin defined by [cutoffs[i], cutoffs[i+1])
     return freqs
+
+def compute_slope_intercept(x, y):
+    meanx = sum(x) / len(x)
+    meany = sum(y) / len(y)
+
+    num = sum([(x[i] - meanx) * (y[i] - meany) for i in range(len(x))])
+    den = sum([(x[i] - meanx) ** 2 for i in range(len(x))])
+    m = num / den
+    # y = mx + b -> y - mx
+    b = meany - m * meanx
+    return m, b
+
